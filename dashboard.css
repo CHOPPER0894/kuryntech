@@ -1,0 +1,374 @@
+/* ========== Layout ========== */
+.main-dashboard {
+  flex: 1;
+  padding: 30px;
+}
+
+/* ========== Real-Time Section ========== */
+.realtime-section {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.realtime-section h2 {
+  margin-bottom: 12px;
+  color: #2d3436;
+}
+
+.realtime-data {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+}
+
+.realtime-box {
+  text-align: center;
+}
+
+.realtime-box .label {
+  display: block;
+  font-size: 14px;
+  color: #555;
+}
+
+.realtime-box .value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #00b894;
+}
+
+/* ========== Usage Summary Section ========== */
+.summary-section {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  margin-top: 30px;
+}
+
+.summary-section h2 {
+  margin-bottom: 12px;
+  color: #2d3436;
+}
+
+.summary-boxes {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.summary-card {
+  flex: 1;
+  min-width: 160px;
+  padding: 16px;
+  border-radius: 10px;
+  background-color: #f0f8f7;
+  text-align: center;
+  box-shadow: inset 0 0 0 1px #dfe6e9;
+}
+
+.summary-card h3 {
+  margin: 0;
+  color: #2d3436;
+}
+
+.summary-card p {
+  margin: 4px 0;
+  font-size: 16px;
+}
+
+/* ========== Monthly Progress Bar ========== */
+.monthly-progress {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  margin-top: 30px;
+}
+
+.monthly-progress h2 {
+  margin-bottom: 12px;
+  color: #2d3436;
+}
+
+.progress-summary {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #2d3436;
+}
+
+.progress-bar-container {
+  height: 20px;
+  background: #dfe6e9;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease, background 0.5s ease;
+  border-radius: 10px;
+}
+
+.remaining {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #636e72;
+}
+
+/* ========== Monthly Chart Section ========== */
+.monthly-chart-section,
+.monthly-progress { /* combined both if needed */
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  margin-top: 30px;
+}
+
+.monthly-chart-section h2 {
+  color: #2d3436;
+  margin-bottom: 16px;
+}
+
+#monthlyUsageChart {
+  max-width: 100%;
+  margin-top: 10px;
+}
+
+#averageCostSummary {
+  margin-top: 14px;
+  font-size: 16px;
+  color: #2d3436;
+  font-weight: 500;
+}
+
+#mobileCurrentMonthFee {
+  display: none;
+  text-align: center;
+  font-size: 16px;
+  color: #2d3436;
+  margin-top: 8px;
+}
+
+/* ========== Chart Controls ========== */
+.chart-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  gap: 12px;
+}
+
+.chart-controls button {
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chart-controls button:hover {
+  background-color: #74b9ff;
+}
+
+.month-label {
+  font-weight: bold;
+  font-size: 16px;
+  color: #2d3436;
+}
+
+#monthLabel {
+  font-weight: bold;
+  font-size: 16px;
+  color: #0984e3;
+  padding: 4px 10px;
+  border: 1px solid #0984e3;
+  border-radius: 8px;
+  background-color: rgba(9, 132, 227, 0.1);
+}
+
+/* ========== Budget Modal ========== */
+.budget-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+  margin-bottom: 10px;
+  color: #2d3436;
+}
+
+.modal-content textarea,
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.modal-content button {
+  background-color: #00b894;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #019875;
+}
+
+/* ========== Default Visibility ========== */
+#monthlyChartWrapper {
+  display: block;
+}
+
+#monthlyUsageChart {
+  display: block;
+}
+
+#mobileUsageSummary {
+  display: none;
+}
+
+/* ========== Mobile View ========== */
+@media (max-width: 768px) {
+  .main-dashboard {
+    padding: 20px;
+    padding-top: 80px;
+  }
+
+  .dashboard-header h2,
+  .dashboard-header .subtitle {
+    text-align: center;
+  }
+
+  .dashboard-header h2 {
+    font-size: 24px;
+  }
+
+  .dashboard-header .subtitle {
+    font-size: 14px;
+  }
+
+  .realtime-data {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .summary-boxes {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .summary-card {
+    width: 100%;
+  }
+
+  .monthly-progress,
+  .monthly-chart-section {
+    padding: 16px;
+  }
+
+  .progress-bar-container {
+    max-width: 100%;
+  }
+
+  /* Hide chart and show summary text */
+  #monthlyChartWrapper,
+  #monthlyUsageChart {
+    display: none;
+  }
+
+  #mobileUsageSummary,
+  #mobileCurrentMonthFee {
+    display: block;
+  }
+
+  /* Chart Controls */
+  .chart-controls {
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .chart-controls button {
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #0984e3;
+    font-weight: bold;
+    background-color: #f0f6ff;
+    color: #0984e3;
+    cursor: pointer;
+  }
+
+  .chart-controls button:disabled {
+    background-color: #f0f0f0;
+    color: #ccc;
+    border-color: #ccc;
+    cursor: default;
+  }
+
+  #monthLabel {
+    padding: 10px 14px;
+    background-color: #eaf4ff;
+    color: #0984e3;
+    border: 2px solid #0984e3;
+    border-radius: 10px;
+    font-size: 16px;
+    min-width: 110px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .modal-content h3 {
+    font-size: 18px;
+  }
+
+  .modal-content textarea,
+  .modal-content input {
+    font-size: 14px;
+  }
+}

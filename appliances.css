@@ -1,0 +1,157 @@
+/* APPLIANCE MONITORING */
+
+.appliance-section {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.appliance-section h2 {
+  text-align: center;
+}
+
+.appliance-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.appliance-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 320px;
+  flex: 1 1 280px;
+}
+
+.appliance-card h3 {
+  text-align: center;
+}
+.alert-msg {
+  color: #e74c3c;
+  font-weight: bold;
+  background-color: #fdecea;
+  border: 1px solid #e74c3c;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 8px;
+}
+
+.toggle-btn {
+  padding: 8px 16px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.toggle-btn.on {
+  background-color: #10b981;
+}
+
+.toggle-btn.off {
+  background-color: #ef4444;
+}
+
+.timer-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 5px 10px;
+  background-color: white;
+}
+
+.timer-display {
+  font-family: monospace;
+  font-size: 1rem;
+  border: none;
+  background: transparent;
+  width: 90px;
+  text-align: center;
+  color: #333;
+}
+
+.timer-display:focus {
+  outline: none;
+}
+
+.start-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding-left: 10px;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.start-btn:hover {
+  color: #0984e3;
+}
+
+
+/* ========== Responsive Layout ========== */
+@media (max-width: 768px) {
+  .appliance-section {
+    padding: 15px;
+  }
+
+  .appliance-section h2 {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .appliance-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .appliance-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .appliance-card h3 {
+    font-size: 18px;
+  }
+
+  .appliance-card p {
+    font-size: 14px;
+  }
+
+  .control-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .toggle-btn {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+}

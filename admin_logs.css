@@ -1,0 +1,148 @@
+/* ========== Layout ========== */
+.main-dashboard {
+  flex: 1;
+  padding: 30px;
+  background-color: #f8f9fa;
+}
+
+/* ========== Web Header ========== */
+.web-header h2 {
+  font-size: 28px;
+  color: #2d3436;
+}
+
+.subtitle {
+  color: #636e72;
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+/* ========== Log Filters ========== */
+.log-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.log-filters input,
+.log-filters select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.log-filters button {
+  background-color: #00b894;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.log-filters button:hover {
+  background-color: #019875;
+}
+
+/* ========== Logs Table ========== */
+.summary-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.summary-section th,
+.summary-section td {
+  padding: 12px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+  font-size: 14px;
+}
+
+.summary-section th {
+  background-color: #f1f2f6;
+  color: #2d3436;
+}
+
+/* ========== Status Labels ========== */
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 13px;
+  display: inline-block;
+}
+
+.status.success {
+  background-color: #dff9fb;
+  color: #00b894;
+  border: 1px solid #00b894;
+}
+
+.status.warning {
+  background-color: #fff6e5;
+  color: #fdcb6e;
+  border: 1px solid #fdcb6e;
+}
+
+.status.error {
+  background-color: #ffcccc;
+  color: #d63031;
+  border: 1px solid #d63031;
+}
+
+/* ========== Pagination ========== */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.pagination-btn {
+  padding: 8px 16px;
+  background-color: #00b894;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.page-number {
+  font-weight: bold;
+  color: #2d3436;
+  font-size: 14px;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .log-filters {
+    flex-direction: column;
+  }
+
+  .summary-section th,
+  .summary-section td {
+    font-size: 13px;
+  }
+
+  .pagination-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .page-number {
+    font-size: 13px;
+  }
+}
