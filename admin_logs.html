@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Activity Logs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/admin_logs.css">
+  <script src="javascript/sidebar.js"></script>
+</head>
+<body>
+
+  <!-- MOBILE HEADER -->
+  <div class="mobile-header">
+    <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div>
+      <ul class="menu">
+        <li class="menu-item">
+          <a href="admin_dashboard.html"><i class="fas fa-chart-line"></i>Dashboard</a>
+        </li>
+        <li class="menu-item">
+          <a href="admin_users.html"><i class="fas fa-users"></i>User Management</a>
+        </li>
+        <li class="menu-item active">
+          <a href="admin_logs.html"><i class="fas fa-list"></i>Activity Logs</a>
+        </li>
+        <li class="menu-item">
+          <a href="admin_data.html"><i class="fas fa-database"></i>Data Logs</a>
+        </li>
+        <li class="menu-item">
+          <a href="admin_settings.html"><i class="fas fa-cog"></i>Settings</a>
+        </li>
+      </ul>
+    </div>
+    <div class="profile-bar">
+      <i class="fas fa-user-shield"></i>
+      <span style="margin-left: 10px;">Admin</span>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-dashboard">
+    <div class="web-header">
+      <h2>Activity Logs</h2>
+    </div>
+
+    <!-- Filters -->
+    <div class="log-filters">
+      <input type="text" placeholder="Search user or action..." id="searchInput">
+      <input type="date" id="fromDate">
+      <input type="date" id="toDate">
+      <select id="statusFilter">
+        <option value="">All Status</option>
+        <option value="success">Success</option>
+        <option value="warning">Warning</option>
+        <option value="error">Error</option>
+      </select>
+      <button id="filterButton">Apply Filters</button>
+    </div>
+
+    <!-- Logs Table -->
+    <section class="summary-section">
+      <h3>Recent Activities</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>User</th>
+            <th>Action</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="logTableBody">
+          <tr>
+            <td>2025-07-05</td>
+            <td>admin01</td>
+            <td>Logged in</td>
+            <td><span class="status success">Success</span></td>
+          </tr>
+          <tr>
+            <td>2025-07-05</td>
+            <td>admin02</td>
+            <td>Deleted user account</td>
+            <td><span class="status error">Error</span></td>
+          </tr>
+          <tr>
+            <td>2025-07-04</td>
+            <td>admin01</td>
+            <td>Updated settings</td>
+            <td><span class="status warning">Warning</span></td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div class="pagination-controls">
+        <button class="pagination-btn" id="prevPage" disabled>← Prev</button>
+        <span class="page-number" id="pageInfo">Page 1 of 1</span>
+        <button class="pagination-btn" id="nextPage">Next →</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const rowsPerPage = 20;
+    let currentPage = 1;
+    const table = document.getElementById("logTableBody");
+    let rows = [];
+
+    function updatePagination() {
+      const start = (currentPage - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
+      table.innerHTML = '';
+      rows.slice(start, end).forEach(row => table.appendChild(row));
+
+      const totalPages = Math.ceil(rows.length / rowsPerPage);
+      document.getElementById("pageInfo").textContent = `Page ${currentPage} of ${totalPages}`;
+      document.getElementById("prevPage").disabled = currentPage === 1;
+      document.getElementById("nextPage").disabled = currentPage === totalPages;
+    }
+
+    document.getElementById("prevPage").onclick = () => {
+      if (currentPage > 1) {
+        currentPage--;
+        updatePagination();
+      }
+    };
+
+    document.getElementById("nextPage").onclick = () => {
+      if (currentPage < Math.ceil(rows.length / rowsPerPage)) {
+        currentPage++;
+        updatePagination();
+      }
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+      rows = Array.from(document.querySelectorAll("#logTableBody tr"));
+      updatePagination();
+    });
+  </script>
+</body>
+</html>

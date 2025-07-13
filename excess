@@ -1,0 +1,12 @@
+PINS: 
+Voltage Pins : 33
+Current Sensor(ACS712) pins:
+5A: 32, 34
+20A: 35, 36
+30A: 39
+Socket - Arduino to Relay Module
+1 - 4
+2 - 12
+3 - 2
+4 - 13
+5 - 5

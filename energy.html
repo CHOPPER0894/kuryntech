@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Energy Insights</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="energy.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/energy.css">
+  <script src="javascript/sidebar.js"></script>
+</head>
+<body>
+      <!-- MOBILE HEADER  -->
+  <div class="mobile-header">
+    <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+    <span class="brand-name">iSocket</span>
+  </div>
+  
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div>
+      <ul class="menu">
+        <li class="menu-item">
+          <a href="dashboard.html"><i class="fas fa-home"></i>Dashboard</a>
+        </li>
+        <li class="menu-item">
+          <a href="appliances.html"><i class="fas fa-plug"></i>Monitoring</a>
+        </li>
+        <li class="menu-item active">
+          <a href="energy.html"><i class="fas fa-bolt"></i>Energy Insight</a>
+        </li>
+        <li class="menu-item">
+          <a href="settings.html"><i class="fas fa-cog"></i>Settings</a>
+        </li>
+      </ul>
+    </div>
+    <div class="profile-bar">
+      <i class="fas fa-user"></i>
+      <span style="margin-left: 10px;">Name</span>
+    </div>
+  </div>
+
+<div class="main-energy">
+    <div class="web-header">
+      <h2>ENERGY INSIGHTS</h2>
+    </div>
+
+  <!-- THRESHOLD SECTION -->
+  <div class="threshold-section">
+    <h3>Threshold Settings</h3>
+    <p>Set alert thresholds for high consumption, cost, and appliance usage time.</p>
+
+    <div class="input-group">
+      <div>
+        <label for="consumption">Consumption (kWh)</label>
+        <input type="number" id="consumption" placeholder="Enter value">
+      </div>
+      <div>
+        <label for="costLimit">Monthly Cost Limit (₱)</label>
+        <input type="number" id="costLimit" placeholder="e.g. 1500">
+      </div>
+      <div>
+        <label for="usageLimit">Max Appliance Usage (hrs)</label>
+        <input type="number" id="usageLimit" placeholder="e.g. 8">
+      </div>
+      <div style="margin-top: 15px; text-align: right;">
+        <button id="applyThresholds" class="threshold-btn">Apply Thresholds</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE METRICS / INSIGHTS -->
+  <div class="status-summary">
+    <div class="metrics">
+      <h3><i class="fas fa-bolt"></i> Live Insights</h3>
+
+      <p>
+        <i class="fas fa-battery-half" style="color:#3b82f6;"></i>
+        <strong>Real-Time Usage:</strong>
+        <span id="realtime-kwh">0.00</span> kWh |
+        <span id="realtime-cost">₱0.00</span>
+      </p>
+
+      <p>
+        <i class="fas fa-chart-line" style="color:#6366f1;"></i>
+        <strong>Forecasted Monthly Cost:</strong>
+        <span id="forecast-cost">₱0.00</span>
+      </p>
+
+      <!-- 📦 Grouped Budget + Top Socket -->
+      <div class="summary-column">
+        <p id="budget-status" class="summary-box">
+          Checking budget status...
+        </p>
+
+        <p id="top-socket" class="summary-box">
+          <i class="fas fa-plug-circle-bolt" style="color:#10b981;"></i>
+          <strong>Top socket:</strong> Loading...
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ALERTS -->
+  <div class="insight-boxes">
+    <div class="alert-box">
+      <h3><i class="fas fa-triangle-exclamation" style="color:#f59e0b;"></i> Alerts</h3>
+      <ul id="alert-list">
+        <!-- JS will populate this -->
+      </ul>
+    </div>
+
+    <div class="tip-box">
+      <h3><i class="fas fa-lightbulb" style="color:#10b981;"></i> Energy Saving Tips</h3>
+      <ul>
+        <li>Turn off appliances when not in use to save energy.</li>
+        <li>Use energy-efficient appliances to reduce consumption.</li>
+        <li>Set schedules for automatic on/off to optimize usage.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+  <script src="javascript/energy.js"></script>
+</body>
+</html>

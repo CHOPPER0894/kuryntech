@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - User Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/admin_users.css">
+  <script src="javascript/sidebar.js"></script>
+</head>
+<body>
+
+  <!-- MOBILE HEADER -->
+  <div class="mobile-header">
+    <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div>
+      <ul class="menu">
+        <li class="menu-item">
+          <a href="admin_dashboard.html"><i class="fas fa-chart-line"></i>Dashboard</a>
+        </li>
+        <li class="menu-item active">
+          <a href="admin_users.html"><i class="fas fa-users"></i>User Management</a>
+        </li>
+        <li class="menu-item">
+          <a href="admin_logs.html"><i class="fas fa-list"></i>Activity Logs</a>
+        </li>
+        <li class="menu-item ">
+          <a href="admin_data.html"><i class="fas fa-database"></i>Data Logs</a>
+        </li>
+        <li class="menu-item">
+          <a href="admin_settings.html"><i class="fas fa-cog"></i>Settings</a>
+        </li>
+      </ul>
+    </div>
+    <div class="profile-bar">
+      <i class="fas fa-user-shield"></i>
+      <span style="margin-left: 10px;">Admin</span>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-dashboard">
+    <div class="web-header">
+      <h2>User Management</h2>
+      <p class="subtitle">Manage registered users and their access</p>
+    </div>
+
+    <section class="summary-section">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="margin: 0;">Registered Users</h3>
+        <button class="pref-btn green" onclick="openAddUserModal()">+ Add User</button>
+      </div>
+
+      <div style="margin-top: 20px; overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead style="background-color: #00b894; color: white;">
+            <tr>
+              <th style="padding: 10px;">User ID</th>
+              <th style="padding: 10px;">Name</th>
+              <th style="padding: 10px;">Email</th>
+              <th style="padding: 10px;">Status</th>
+              <th style="padding: 10px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="userTableBody">
+            <!-- Data will be inserted via JavaScript -->
+            <tr>
+              <td style="padding: 10px;">001</td>
+              <td style="padding: 10px;">Juan Dela Cruz</td>
+              <td style="padding: 10px;">juan@example.com</td>
+              <td style="padding: 10px;"><span style="color: green;">Active</span></td>
+              <td style="padding: 10px;">
+                <button class="pref-btn" onclick="editUser('001')">Edit</button>
+                <button class="pref-btn red" onclick="deleteUser('001')">Delete</button>
+              </td>
+            </tr>
+            <!-- Add more rows here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal for Adding User -->
+  <div id="addUserModal" class="budget-modal" style="display: none;">
+    <div class="modal-content">
+      <h3>Add New User</h3>
+      <input type="text" placeholder="Full Name" />
+      <input type="email" placeholder="Email Address" />
+      <input type="password" placeholder="Password" />
+      <button onclick="submitNewUser()">Add User</button>
+    </div>
+  </div>
+
+  <script>
+    function openAddUserModal() {
+      document.getElementById('addUserModal').style.display = 'flex';
+    }
+
+    function submitNewUser() {
+      alert("New user added! (This is a placeholder)");
+      document.getElementById('addUserModal').style.display = 'none';
+    }
+
+    function editUser(id) {
+      alert('Edit function for user ID: ' + id);
+    }
+
+    function deleteUser(id) {
+      if (confirm('Are you sure you want to delete user ID: ' + id + '?')) {
+        alert('Deleted user ID: ' + id);
+      }
+    }
+  </script>
+
+</body>
+</html>

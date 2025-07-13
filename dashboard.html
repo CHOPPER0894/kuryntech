@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Home Monitoring Dashboard</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+  <script src="javascript/sidebar.js"></script>
+</head>
+<body>
+  <!-- MOBILE HEADER -->
+  <div class="mobile-header">
+    <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+  </div>
+
+  <div class="dashboard-container"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div>
+      <ul class="menu">
+        <li class="menu-item active"><a href="dashboard.html"><i class="fas fa-home"></i>Dashboard</a></li>
+        <li class="menu-item"><a href="appliances.html"><i class="fas fa-plug"></i>Monitoring</a></li>
+        <li class="menu-item"><a href="energy.html"><i class="fas fa-bolt"></i>Energy Insight</a></li>
+        <li class="menu-item"><a href="settings.html"><i class="fas fa-cog"></i>Settings</a></li>
+      </ul>
+    </div>
+    <div class="profile-bar">
+      <i class="fas fa-user"></i>
+      <span style="margin-left: 10px;">Name</span>
+    </div>
+  </aside>
+
+  <!-- Main Dashboard -->
+  <main class="main-dashboard">
+    <div class="web-header">
+      <h2>kurynTech</h2>
+      <p class="subtitle">Smart Energy Monitoring</p>
+    </div>
+
+    <!-- Realtime Section -->
+    <section class="realtime-section">
+      <h2>Real-Time Monitoring</h2>
+      <div class="realtime-data">
+        <div class="realtime-box">
+          <span class="label">Energy (kWh)</span>
+          <span class="value" id="realtime-energy">0.00</span>
+        </div>
+        <div class="realtime-box">
+          <span class="label">Estimated Cost</span>
+          <span class="value" id="realtime-cost">₱0.00</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Usage Summary -->
+    <section class="summary-section">
+      <h2>Usage Summary</h2>
+      <div class="summary-boxes">
+        <div class="summary-card">
+          <h3>Today</h3>
+          <p id="today-kwh">0.0 kWh</p>
+          <p id="today-cost">₱0.00</p>
+        </div>
+        <div class="summary-card">
+          <h3>This Week</h3>
+          <p id="week-kwh">0.0 kWh</p>
+          <p id="week-cost">₱0.00</p>
+        </div>
+        <div class="summary-card">
+          <h3>This Month</h3>
+          <p id="month-kwh">0.0 kWh</p>
+          <p id="month-cost">₱0.00</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Monthly Progress -->
+    <section class="monthly-progress">
+      <h2>Monthly Usage Goal</h2>
+      <p class="progress-summary" id="progress-summary">0.0 kWh of 150 kWh used</p>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar" style="width: 0%; background-color: #00b894;"></div>
+      </div>
+      <p class="remaining" id="remaining">150.0 kWh remaining this month</p>
+    </section>
+
+    <!-- Monthly Chart -->
+    <section class="monthly-progress" style="margin-top: 30px;">
+      <h2>Monthly Usage Chart</h2>
+      <div id="monthlyChartWrapper" style="max-width: 600px; margin: 0 auto;">
+        <canvas id="monthlyUsageChart"></canvas>
+      </div>
+      <p id="mobileCurrentMonthFee" class="mobileCurrentMonthFee">July Usage: ₱0.00</p>
+      <p id="averageCostSummary">Average Monthly Fee: ₱0.00</p>
+      <div class="chart-controls">
+        <button class="chart-nav-btn" onclick="prevMonth()">← Prev</button>
+        <span id="monthLabel" class="month-label">Loading...</span>
+        <button class="chart-nav-btn" onclick="nextMonth()">Next →</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Region Rate Modal -->
+  <div id="regionModal" style="display: none; position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:9999;">
+    <div style="background:white; padding:30px; border-radius:10px; width: 90%; max-width: 400px; border-top: 5px solid #57B894;">
+      <h3 style="color: #57B894;">Set Your Electric Rate</h3>
+      <p>Enter your location/provider to improve cost accuracy:</p>
+
+      <label for="regionSelect">Region / Provider</label>
+      <select id="regionSelect" style="width:100%; padding:10px; margin-bottom: 10px;">
+        <option value="Meralco">Meralco</option>
+        <option value="VECO">VECO</option>
+        <option value="Davao Light">Davao Light</option>
+        <option value="Other">Other / Manual</option>
+      </select>
+
+      <div id="customRateInput" style="display:none;">
+        <label for="manualRate">Rate (₱ per kWh)</label>
+        <input type="number" id="manualRate" placeholder="e.g. 10.50" style="width:100%; padding:10px; margin-bottom: 10px;">
+      </div>
+
+      <button onclick="saveRegionRate()" style="background:#57B894; color:white; padding:10px 16px; border:none; border-radius:6px; width: 100%;">Save and Continue</button>
+    </div>
+  </div>
+
+  <script src="javascript/dashboard.js"></script>
+</body>
+</html>

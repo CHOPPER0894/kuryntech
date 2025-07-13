@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard | iSocket</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="javascript/sidebar.js"></script>
+</head>
+<body>
+
+  <!-- MOBILE HEADER -->
+  <div class="mobile-header">
+    <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div>
+    <ul class="menu">
+      <li class="menu-item active"><a href="admin_dashboard.html"><i class="fas fa-chart-line"></i>Dashboard</a></li>
+      <li class="menu-item"><a href="admin_users.html"><i class="fas fa-users"></i>User Management</a></li>
+      <li class="menu-item"><a href="admin_logs.html"><i class="fas fa-list"></i>Activity Logs</a></li>
+      <li class="menu-item"><a href="admin_data.html"><i class="fas fa-database"></i>Data Logs</a></li>
+      <li class="menu-item"><a href="admin_settings.html"><i class="fas fa-cog"></i>Settings</a></li>
+    </ul>
+    </div>
+    <div class="profile-bar">
+      <i class="fas fa-user-shield"></i>
+      <span style="margin-left: 10px;">Admin</span>
+    </div>
+  </aside>
+
+  <!-- Main Dashboard -->
+  <main class="main-dashboard">
+    <div class="web-header">
+      <h2>kurynTech ADMIN</h2>
+      <p class="subtitle">System Management Overview</p>
+    </div>
+
+    <!-- System Stats -->
+    <section class="realtime-section">
+      <h2>System Overview</h2>
+      <div class="realtime-data">
+        <div class="realtime-box">
+          <span class="label">Registered Users</span>
+          <span class="value" id="admin-users-count">120</span>
+        </div>
+        <div class="realtime-box">
+          <span class="label">Active Devices</span>
+          <span class="value" id="admin-devices-count">85</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-section">
+      <h2>System Summary</h2>
+      <div class="summary-boxes">
+        <div class="summary-card">
+          <h3>Online Now</h3>
+          <p>34 Users</p>
+        </div>
+        <div class="summary-card">
+          <h3>Total Logs</h3>
+          <p>2,134 Entries</p>
+        </div>
+        <div class="summary-card">
+          <h3>Reported Issues</h3>
+          <p>4 Reports</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activity Chart -->
+    <section class="monthly-progress">
+      <h2>User Activity Chart</h2>
+      <p class="progress-summary" id="admin-progress-summary">Logins in July: 138</p>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="admin-progress-bar" style="width: 55%; background-color: #74b9ff;"></div>
+      </div>
+      <p class="remaining" id="admin-remaining">Goal: 250 logins</p>
+    </section>
+
+    <!-- Chart Section -->
+    <section class="monthly-progress" style="margin-top: 30px;">
+      <h2>System Access Chart</h2>
+      <div id="monthlyChartWrapper" style="max-width: 600px; margin: 0 auto;">
+        <canvas id="adminUsageChart"></canvas>
+      </div>
+      <p id="mobileCurrentMonthFee" class="mobileCurrentMonthFee"></p>
+      <p id="averageCostSummary">Avg. Admin Sessions: 48 per month</p>
+
+      <div class="chart-controls">
+        <button class="chart-nav-btn" onclick="prevMonth()">← Prev</button>
+        <span id="monthLabel" class="month-label">July 2025</span>
+        <button class="chart-nav-btn" onclick="nextMonth()">Next →</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="javascript/admin_dashboard.js"></script>
+</body>
+</html>

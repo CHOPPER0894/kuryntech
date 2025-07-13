@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Appliance Monitoring - iSocket</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/appliances.css">
+  <script src="javascript/sidebar.js"></script>
+</head>
+<body>
+      <!-- MOBILE HEADER  -->
+  <div class="mobile-header">
+    <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+    <span class="brand-name">iSocket</span>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div>
+      <ul class="menu">
+        <li class="menu-item">
+          <a href="dashboard.html"><i class="fas fa-home"></i>Dashboard</a>
+        </li>
+        <li class="menu-item active">
+          <a href="appliances.html"><i class="fas fa-plug"></i>Monitoring</a>
+        </li>
+        <li class="menu-item">
+          <a href="energy.html"><i class="fas fa-bolt"></i>Energy Insight</a>
+        </li>
+        <li class="menu-item">
+          <a href="settings.html"><i class="fas fa-cog"></i>Settings</a>
+        </li>
+      </ul>
+    </div>
+    <div class="profile-bar">
+      <i class="fas fa-user"></i>
+      <span style="margin-left: 10px;">Name</span>
+    </div>
+  </div>
+
+  <div class="appliance-section">
+    <div class="web-header">
+      <h2>APPLIANCES MONITORING</h2>
+    </div>
+
+    <div class="appliance-grid">
+      <!-- SOCKET 1 to 5 -->
+      <div class="appliance-card">
+        <h3>Socket 1</h3>
+        <p><strong>Voltage:</strong> <span class="voltage">220V</span></p>
+        <p><strong>Current:</strong> <span class="current">0A</span></p>
+        <p><strong>Power:</strong> <span class="power">0W</span></p>
+        <p class="alert-msg">⚠ High Usage</p>
+        <canvas id="socket1Chart" height="100"></canvas>
+        <div class="control-row">
+          <button class="toggle-btn off">Off</button>
+          <div class="timer-container">
+            <input type="text" class="timer-display" value="00:00:00" maxlength="8" />
+            <i class="fas fa-clock start-btn"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Repeat above block for sockets 2 to 5, change IDs and headings accordingly -->
+      <!-- ... SOCKET 2 ... -->
+      <div class="appliance-card">
+        <h3>Socket 2</h3>
+        <p><strong>Voltage:</strong> <span class="voltage">220V</span></p>
+        <p><strong>Current:</strong> <span class="current">0A</span></p>
+        <p><strong>Power:</strong> <span class="power">0W</span></p>
+        <p class="alert-msg">⚠ High Usage</p>
+        <canvas id="socket2Chart" height="100"></canvas>
+        <div class="control-row">
+          <button class="toggle-btn off">Off</button>
+          <div class="timer-container">
+            <input type="text" class="timer-display" value="00:00:00" maxlength="8" />
+            <i class="fas fa-clock start-btn"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOCKET 3 -->
+      <div class="appliance-card">
+        <h3>Socket 3</h3>
+        <p><strong>Voltage:</strong> <span class="voltage">220V</span></p>
+        <p><strong>Current:</strong> <span class="current">0A</span></p>
+        <p><strong>Power:</strong> <span class="power">0W</span></p>
+        <p class="alert-msg">⚠ High Usage</p>
+        <canvas id="socket3Chart" height="100"></canvas>
+        <div class="control-row">
+          <button class="toggle-btn off">Off</button>
+          <div class="timer-container">
+            <input type="text" class="timer-display" value="00:00:00" maxlength="8" />
+            <i class="fas fa-clock start-btn"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOCKET 4 -->
+      <div class="appliance-card">
+        <h3>Socket 4</h3>
+        <p><strong>Voltage:</strong> <span class="voltage">220V</span></p>
+        <p><strong>Current:</strong> <span class="current">0A</span></p>
+        <p><strong>Power:</strong> <span class="power">0W</span></p>
+        <p class="alert-msg">⚠ High Usage</p>
+        <canvas id="socket4Chart" height="100"></canvas>
+        <div class="control-row">
+          <button class="toggle-btn off">Off</button>
+          <div class="timer-container">
+            <input type="text" class="timer-display" value="00:00:00" maxlength="8" />
+            <i class="fas fa-clock start-btn"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOCKET 5 -->
+      <div class="appliance-card">
+        <h3>Socket 5</h3>
+        <p><strong>Voltage:</strong> <span class="voltage">220V</span></p>
+        <p><strong>Current:</strong> <span class="current">0A</span></p>
+        <p><strong>Power:</strong> <span class="power">0W</span></p>
+        <p class="alert-msg">⚠ High Usage</p>
+        <canvas id="socket5Chart" height="100"></canvas>
+        <div class="control-row">
+          <button class="toggle-btn off">Off</button>
+          <div class="timer-container">
+            <input type="text" class="timer-display" value="00:00:00" maxlength="8" />
+            <i class="fas fa-clock start-btn"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="javascript/appliances.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Data Logs - kurynTech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/admin_data.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div>
+      <ul class="menu">
+        <li class="menu-item">
+          <a href="admin_dashboard.html"><i class="fas fa-chart-line"></i>Dashboard</a>
+        </li>
+        <li class="menu-item">
+          <a href="admin_users.html"><i class="fas fa-users"></i>User Management</a>
+        </li>
+        <li class="menu-item">
+          <a href="admin_logs.html"><i class="fas fa-list"></i>Activity Logs</a>
+        </li>
+        <li class="menu-item active">
+          <a href="admin_data.html"><i class="fas fa-database"></i>Data Logs</a>
+        </li>
+        <li class="menu-item">
+          <a href="admin_settings.html"><i class="fas fa-cog"></i>Settings</a>
+        </li>
+      </ul>
+    </div>
+    <div class="profile-bar">
+      <i class="fas fa-user-shield"></i>
+      <span style="margin-left: 10px;">Admin</span>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-dashboard">
+    <div class="web-header">
+      <h2>Energy Data Monitoring</h2>
+      <p class="subtitle">Live & Historical Logs from Clients</p>
+    </div>
+
+    <!-- Filters -->
+    <section class="filter-section">
+      <label for="userSelect">Filter by User:</label>
+      <select id="userSelect">
+        <option value="all">All Users</option>
+        <!-- Populate dynamically -->
+      </select>
+
+      <label for="dateFrom">From:</label>
+      <input type="date" id="dateFrom">
+      <label for="dateTo">To:</label>
+      <input type="date" id="dateTo">
+
+      <button class="filter-btn"><i class="fas fa-filter"></i> Apply</button>
+      <button class="export-btn"><i class="fas fa-file-csv"></i> Export CSV</button>
+    </section>
+
+    <!-- Data Table -->
+    <section class="data-table-section">
+      <table>
+        <thead>
+        <tr>
+            <th>User</th>
+            <th>Region/Provider</th>
+            <th>Rate (₱/kWh)</th>
+            <th>Voltage (V)</th>
+            <th>Current (A)</th>
+            <th>Power (W)</th>
+            <th>Energy (kWh)</th>
+            <th>Est. Cost (₱)</th>
+            <th>Timestamp</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody id="dataLogTable">
+          <!-- Rows populated dynamically -->
+        </tbody>
+      </table>
+
+      <!-- Pagination Controls -->
+      <div class="pagination">
+        <button class="page-btn" disabled>Prev</button>
+        <span class="page-number">Page 1 of 10</span>
+        <button class="page-btn">Next</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="javascript/admin_data.js"></script>
+</body>
+</html>

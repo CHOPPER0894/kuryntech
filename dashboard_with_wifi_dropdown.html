@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Home Monitoring Dashboard</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+  <script src="javascript/sidebar.js"></script>
+</head>
+<body>
+  <!-- MOBILE HEADER -->
+  <div class="mobile-header">
+    <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+  </div>
+
+  <div class="dashboard-container"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div>
+      <ul class="menu">
+        <li class="menu-item active"><a href="dashboard.html"><i class="fas fa-home"></i>Dashboard</a></li>
+        <li class="menu-item"><a href="appliances.html"><i class="fas fa-plug"></i>Monitoring</a></li>
+        <li class="menu-item"><a href="energy.html"><i class="fas fa-bolt"></i>Energy Insight</a></li>
+        <li class="menu-item"><a href="settings.html"><i class="fas fa-cog"></i>Settings</a></li>
+      </ul>
+    </div>
+    <div class="profile-bar">
+      <i class="fas fa-user"></i>
+      <span style="margin-left: 10px;">Name</span>
+    </div>
+  </aside>
+
+  <!-- Main Dashboard -->
+  <main class="main-dashboard">
+    <div class="web-header">
+      <h2>kurynTech</h2>
+      <p class="subtitle">Smart Energy Monitoring</p>
+    </div>
+
+    <!-- Realtime Section -->
+    <section class="realtime-section">
+      <h2>Real-Time Monitoring</h2>
+      <div class="realtime-data">
+        <div class="realtime-box">
+          <span class="label">Energy (kWh)</span>
+          <span class="value" id="realtime-energy">0.00</span>
+        </div>
+        <div class="realtime-box">
+          <span class="label">Estimated Cost</span>
+          <span class="value" id="realtime-cost">₱0.00</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Monthly Usage Chart -->
+    <!-- ...Omitted for brevity... -->
+
+  </main>
+
+  <!-- WiFi Modal with Dropdown -->
+  <div id="wifiModal" style="display: flex; position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000;">
+    <div style="background:white; padding:30px; border-radius:10px; width: 90%; max-width: 400px; border-top: 5px solid #4EA685;">
+      <h3 style="color: #4EA685;">Connect to Wi-Fi</h3>
+      <p>Select your Wi-Fi and enter the password:</p>
+
+      <label for="ssid">Wi-Fi Network</label>
+      <select id="ssid" style="width:100%; padding:10px; margin-bottom:10px; border-radius:6px;">
+        <option>Loading networks...</option>
+      </select>
+
+      <label for="wifiPassword">Password</label>
+      <input type="password" id="wifiPassword" placeholder="Wi-Fi Password" style="width:100%; padding:10px; margin-bottom:20px; border-radius:6px;">
+
+      <button onclick="saveWifi()" style="background:#4EA685; color:white; padding:10px 16px; border:none; border-radius:6px; width: 100%;">Connect</button>
+    </div>
+  </div>
+
+  <!-- Region Modal -->
+  <!-- ...Omitted for brevity... -->
+
+  <script>
+    async function fetchWifiList() {
+      try {
+        const response = await fetch("http://192.168.4.1/scan");
+        const data = await response.json();
+        const dropdown = document.getElementById("ssid");
+        dropdown.innerHTML = "";
+        data.forEach(network => {
+          const opt = document.createElement("option");
+          opt.value = network.ssid;
+          opt.textContent = `${network.ssid} (${network.rssi} dBm)`;
+          dropdown.appendChild(opt);
+        });
+      } catch (err) {
+        alert("⚠ Failed to load Wi-Fi networks.");
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!localStorage.getItem('wifiConnected')) {
+        fetchWifiList();
+        document.getElementById('wifiModal').style.display = 'flex';
+      }
+    });
+
+    function saveWifi() {
+      const ssid = document.getElementById('ssid').value;
+      const password = document.getElementById('wifiPassword').value;
+      if (!ssid || !password) {
+        alert("Please enter Wi-Fi password.");
+        return;
+      }
+      fetch("http://192.168.4.1/wifi", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ssid, password })
+      }).then(() => {
+        localStorage.setItem('wifiConnected', true);
+        document.getElementById('wifiModal').style.display = 'none';
+        location.reload();
+      });
+    }
+  </script>
+</body>
+</html>

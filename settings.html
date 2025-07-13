@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>iSocket Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <script src="javascript/sidebar.js"></script>
+</head>
+<body>
+  <!-- MOBILE HEADER  -->
+  <div class="mobile-header">
+    <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+    <span class="brand-name">kurynTech</span>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div>
+      <ul class="menu">
+        <li class="menu-item"><a href="dashboard.html"><i class="fas fa-home"></i>Dashboard</a></li>
+        <li class="menu-item"><a href="appliances.html"><i class="fas fa-plug"></i>Monitoring</a></li>
+        <li class="menu-item"><a href="energy.html"><i class="fas fa-bolt"></i>Energy Insight</a></li>
+        <li class="menu-item active"><a href="settings.html"><i class="fas fa-cog"></i>Settings</a></li>
+      </ul>
+    </div>
+    <div class="profile-bar">
+      <i class="fas fa-user"></i>
+      <span style="margin-left: 10px;">Name</span>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-dashboard">
+    <div class="web-header">
+      <h2>Settings</h2>
+      <p class="subtitle">Manage your preferences and account settings</p>
+    </div>
+
+    <!-- Preferences Section -->
+    <div class="settings-section">
+      <h3>Preferences</h3>
+      <div class="pref-grid">
+        <div>
+          <span>Notifications</span>
+          <button class="pref-btn green">Enabled</button>
+        </div>
+        <div>
+          <span>Language</span>
+          <button class="pref-btn green">English</button>
+        </div>
+        <div>
+          <span>Timezone</span>
+          <select class="pref-btn dropdown">
+            <option>Asia/Manila (GMT+8)</option>
+            <option>UTC</option>
+            <option>America/New_York</option>
+            <option>Europe/London</option>
+          </select>
+        </div>
+        <div>
+          <span>Unit of Measurement</span>
+          <select class="pref-btn dropdown">
+            <option>kWh (Kilowatt-hour)</option>
+            <option>Wh (Watt-hour)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wi-Fi Networks Section -->
+    <div class="settings-section">
+      <h3>Wi-Fi Networks</h3>
+      <div>
+        <button class="pref-btn green" onclick="scanNetworks()">Scan Nearby Wi-Fi</button>
+        <ul id="wifi-list" style="margin-top:10px; list-style:disc; padding-left:20px;"></ul>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <h4>Saved Wi-Fi Credentials:</h4>
+        <ul id="saved-wifi" style="list-style:circle; padding-left:20px;"></ul>
+      </div>
+    </div>
+
+    <!-- Account Settings -->
+    <div class="settings-section">
+      <h3>Account Settings</h3>
+      <div class="account-grid">
+        <div>
+          <label for="admin-name">Name</label>
+          <input type="text" id="admin-name" placeholder="Enter full name">
+        </div>
+        <div>
+          <label for="admin-email">Email</label>
+          <input type="email" id="admin-email" placeholder="Enter email">
+        </div>
+        <div>
+          <label for="admin-password">Password</label>
+          <input type="password" id="admin-password" placeholder="Enter new password">
+        </div>
+        <div>
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" placeholder="Re-enter new password">
+        </div>
+      </div>
+
+      <div class="save-btn-container" style="margin-top: 20px;">
+        <button class="pref-btn green"><i class="fas fa-save"></i> Save Changes</button>
+      </div>
+    </div>
+
+    <!-- Prototype Reset -->
+    <div class="settings-section">
+      <h3>Device Control</h3>
+      <button class="pref-btn red" onclick="resetPrototype()">
+        <i class="fas fa-undo-alt"></i> Reset Prototype
+      </button>
+    </div>
+
+    <!-- Sign Out -->
+    <div class="signout-section">
+      <button class="signout-btn" onclick="window.location.href='login_signup.html'">
+        <i class="fas fa-sign-out-alt"></i> Sign Out
+      </button>
+    </div>
+  </main>
+
+  <!-- Custom JS -->
+  <script>
+    async function scanNetworks() {
+      const res = await fetch('http://localhost:5000/wifi/scan');
+      const data = await res.json();
+      const list = document.getElementById('wifi-list');
+      list.innerHTML = '';
+      data.networks.forEach(ssid => {
+        const li = document.createElement('li');
+        li.textContent = ssid;
+        list.appendChild(li);
+      });
+    }
+
+    async function loadSavedWiFi() {
+      const res = await fetch('http://localhost:5000/wifi/list');
+      const data = await res.json();
+      const list = document.getElementById('saved-wifi');
+      list.innerHTML = '';
+      data.wifi.forEach(entry => {
+        const li = document.createElement('li');
+        li.textContent = `SSID: ${entry.ssid}`;
+        list.appendChild(li);
+      });
+    }
+
+    async function resetPrototype() {
+      const confirmReset = confirm("Are you sure you want to reset the prototype?");
+      if (!confirmReset) return;
+      const res = await fetch('http://localhost:5000/reset', { method: 'POST' });
+      const data = await res.json();
+      alert(data.message || "Prototype reset command sent.");
+    }
+
+    window.onload = () => {
+      loadSavedWiFi();
+    };
+  </script>
+</body>
+</html>
